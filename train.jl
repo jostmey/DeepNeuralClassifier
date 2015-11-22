@@ -21,12 +21,12 @@
 	#
 	data = traindata()
 
-	# Format the features.
+	# Scale feature values to be between 0 and 1.
 	#
 	features = data[1]'
 	features /= 255.0
 
-	# Save the labels.
+	# Copy over the labels.
 	#
 	labels = data[2]
 
@@ -60,7 +60,7 @@
 	W34 = 0.1*randn(N3, N4)
 	b4 = 0.1*randn(N4)
 
-	# Learning rate.
+	# Initial learning rate.
 	#
 	alpha = 0.01
 
@@ -82,11 +82,11 @@
 	softplus(x) = log(1.0+exp(x))
 	softmax(x) = exp(x)./sum(exp(x))
 
-	# Derivative of each activation function given its output.
+	# Derivative of each activation function given the output.
 	#
 	D_sigmoid(y) = y.*(1.0-y)
 	D_softplus(y) = 1.0-exp(-y)
-	D_softmax(y) = D_sigmoid(y)
+	D_softmax(y) = y.*(1.0-y)
 
 	# Variables for storing parameter changes.
 	#
@@ -119,20 +119,21 @@
 		#
 		for j = 1:N_minibatch
 
+			# Load the input and target output.
+			#
+			x = 6.0*features[k,:]'-3.0
+			z = zeros(10) ; z[labels[k]+1] = 1.0
+
 			# Feedforward pass for computing the output.
 			#
-			x1 = 6.0*features[k,:]'-3.0
-
-			y1 = sigmoid(x1+b1)
+			y1 = sigmoid(x+b1)
 			y2 = softplus(W12'*y1+b2)
 			y3 = softplus(W23'*y2+b3)
 			y4 = softmax(W34'*y3+b4)
 
 			# Backpropagation for computing the gradients.
 			#
-			yt = zeros(10) ; yt[labels[k]+1] = 1.0
-
-			e4 = yt-y4
+			e4 = z-y4
 			e3 = (W34*e4).*D_softplus(y3)
 			e2 = (W23*e3).*D_softplus(y2)
 			e1 = (W12*e2).*D_softmax(y1)
