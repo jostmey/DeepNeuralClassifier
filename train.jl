@@ -1,7 +1,7 @@
 ##########################################################################################
 # Author: Jared L. Ostmeyer
 # Date Started: 2015-11-17
-# Environment: Julia v0.3
+# Environment: Julia v0.4
 # Purpose: Train deep feed-forward neural network as a classifier.
 ##########################################################################################
 
@@ -41,7 +41,7 @@
 	# Schedule for updating the neural network.
 	#
 	N_minibatch = 10
-	N_updates = int((N_datapoints/N_minibatch))*10
+	N_updates = round(Int, N_datapoints/N_minibatch)
 
 	# Number of neurons in each layer.
 	#
@@ -91,11 +91,11 @@
 	# Variables for storing parameter changes.
 	#
 	db1 = zeros(N1)
-	dW12 = zeros(N1, N2)
+	dW12 = zeros(N1,N2)
 	db2 = zeros(N2)
-	dW23 = zeros(N2, N3)
+	dW23 = zeros(N2,N3)
 	db3 = zeros(N3)
-	dW34 = zeros(N3, N4)
+	dW34 = zeros(N3,N4)
 	db4 = zeros(N4)
 
 ##########################################################################################
@@ -193,8 +193,8 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 		if i%100 == 0
 
 			println("REPORT")
-			println("  Batch = $(int(i))")
-			println("  alpha = $(round(alpha,5))")
+			println("  Batch = $(round(Int, i)")
+			println("  alpha = $(round(alpha, 5))")
 			println("PARAMETERS")
 			println("  Mean(b1) = $(round(mean(b1),5)), Max(b1) = $(round(maximum(b1),5)), Min(b1) = $(round(minimum(b1),5))")
 			println("  Mean(W12) = $(round(mean(W12),5)), Max(W12) = $(round(maximum(W12),5)), Min(W12) = $(round(minimum(W12),5))")
@@ -204,7 +204,7 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 			println("  Mean(W34) = $(round(mean(W34),5)), Max(W34) = $(round(maximum(W34),5)), Min(W34) = $(round(minimum(W34),5))")
 			println("  Mean(b4) = $(round(mean(b4),5)), Max(b4) = $(round(maximum(b4),5)), Min(b4) = $(round(minimum(b4),5))")
 			println("ACCURACY")
-			println("  Correct = $(round(100.0*N_correct/N_tries,5))%")
+			println("  Correct = $(round(100.0*N_correct/N_tries, 5))%")
 			println("")
 			flush(STDOUT)
 
