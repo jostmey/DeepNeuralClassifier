@@ -207,6 +207,10 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 # Save
 ##########################################################################################
 
+	# Create folder to hold parameters.
+	#
+	mkdir("bin/")
+
 	# Save the parameters.
 	#
 	writecsv("bin/train_b1.csv", b2)
