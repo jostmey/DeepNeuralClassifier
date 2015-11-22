@@ -154,7 +154,7 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 			# Update percentage of guesses that are correct.
 			#
 			N_tries += 1.0
-			if findmax(yt)[2] == findmax(y4)[2]
+			if findmax(z)[2] == findmax(y4)[2]
 				N_correct += 1.0
 			end
 
