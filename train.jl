@@ -115,11 +115,6 @@
 	#
 	for i = 1:N_updates
 
-		#
-		#
-		db1 *= momentum
-		dW12 *= momentum
-
 		# Collect updates each cycle for minibatch.
 		#
 		for j = 1:N_minibatch
