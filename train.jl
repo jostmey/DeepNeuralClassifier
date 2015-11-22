@@ -41,7 +41,7 @@
 	# Schedule for updating the neural network.
 	#
 	N_minibatch = 10
-	N_updates = int((N_datapoints/N_minibatch))*300
+	N_updates = int((N_datapoints/N_minibatch))*10
 
 	# Number of neurons in each layer.
 	#
@@ -52,13 +52,13 @@
 
 	# Neural network parameters.
 	#
-	b1 = 0.01*randn(N1)
-	W12 = 0.01*randn(N1, N2)
-	b2 = 0.01*randn(N2)
-	W23 = 0.01*randn(N2, N3)
-	b3 = 0.01*randn(N3)
-	W34 = 0.01*randn(N3, N4)
-	b4 = 0.01*randn(N4)
+	b1 = 0.1*randn(N1)
+	W12 = 0.1*randn(N1, N2)
+	b2 = 0.1*randn(N2)
+	W23 = 0.1*randn(N2, N3)
+	b3 = 0.1*randn(N3)
+	W34 = 0.1*randn(N3, N4)
+	b4 = 0.1*randn(N4)
 
 	# Learning rate.
 	#
@@ -76,15 +76,16 @@
 # Globals
 ##########################################################################################
 
-	# Activation function and its derivative.
+	# Activation functions.
 	#
 	sigmoid(x) = 1.0./(1.0+exp(-x))
-	D_sigmoid(y) = y.*(1.0-y)
-
 	softplus(x) = log(1.0+exp(x))
-	D_softplus(y) = 1.0-exp(-y)
-
 	softmax(x) = exp(x)./sum(exp(x))
+
+	# Derivative of each activation function given its output.
+	#
+	D_sigmoid(y) = y.*(1.0-y)
+	D_softplus(y) = 1.0-exp(-y)
 	D_softmax(y) = D_sigmoid(y)
 
 	# Variables for storing parameter changes.
@@ -113,6 +114,11 @@
 	# Parameters updated each cycle.
 	#
 	for i = 1:N_updates
+
+		#
+		#
+		db1 *= momentum
+		dW12 *= momentum
 
 		# Collect updates each cycle for minibatch.
 		#
@@ -171,6 +177,16 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 		b3 += db3
 		W34 += dW34
 		b4 += db4
+
+		# Scale previous parameter changes by the momentum factor.
+		#
+		db1 *= momentum
+		dW12 *= momentum
+		db2 *= momentum
+		dW23 *= momentum
+		db3 *= momentum
+		dW34 *= momentum
+		db4 *= momentum
 
 		# Adjust the learning rate.
 		#
