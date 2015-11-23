@@ -91,7 +91,15 @@
 	D_softplus(y) = 1.0-exp(-y)
 	D_softmax(y) = y.*(1.0-y)
 
-	# Variables for storing parameter changes.
+##########################################################################################
+# Train
+##########################################################################################
+
+	# Index for items in the dataset.
+	#
+	k = 1
+
+	# Holds change in parameters from a minibatch.
 	#
 	db1 = zeros(N1)
 	dW12 = zeros(N1, N2)
@@ -103,24 +111,16 @@
 	dW45 = zeros(N4, N5)
 	db5 = zeros(N5)
 
-##########################################################################################
-# Train
-##########################################################################################
-
-	# Index for training trial.
-	#
-	k = 1
-
 	# Track percentage of guesses that are correct.
 	#
 	N_correct = 0.0
 	N_tries = 0.0
 
-	# Parameters updated each cycle.
+	# Repeatedly update parameters.
 	#
 	for i = 1:N_updates
 
-		# Collect updates each cycle for minibatch.
+		# Collect multiple updates for minibatch.
 		#
 		for j = 1:N_minibatch
 
@@ -145,7 +145,7 @@
 			e2 = (W23*e3).*D_softplus(y2)
 			e1 = (W12*e2).*D_softmax(y1)
 
-			# Collect minibatch of updates.
+			# Update change in parameters from this minibatch.
 			#
 			scale = alpha/N_minibatch
 			db1 += scale*e1
@@ -169,7 +169,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 				N_correct += 1.0
 			end
 
-			# Move index for training trial to its next value.
+			# Update index for items in the dataset.
 			#
 			k = (k < N_datapoints) ? k+1 : 1
 
@@ -187,7 +187,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 		W45 += dW45
 		b5 += db5
 
-		# Scale previous parameter changes by the momentum factor.
+		# Reset the parameter changes (scale by momentum factor).
 		#
 		db1 *= momentum
 		dW12 *= momentum
@@ -203,10 +203,12 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 		#
 		alpha = alpha*(N_updates-i)/(N_updates-i+1)
 
-		# Periodically print a progress report.
+		# Periodic checks.
 		#
 		if i%100 == 0
 
+			# Print progress report.
+			#
 			println("REPORT")
 			println("  Batch = $(round(Int, i)")
 			println("  alpha = $(round(alpha, 5))")
@@ -214,6 +216,8 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 			println("")
 			flush(STDOUT)
 
+			# Reset percentage of guesses that are correct.
+			#
 			N_tries = 0.0
 			N_correct = 0.0
 
