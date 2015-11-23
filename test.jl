@@ -99,14 +99,16 @@
 
 		# Update percentage of guesses that are correct.
 		#
-		N_tries += 1.0
-		if findmax(y5)[2]-1 == labels[i]
+		guess = findmax(z)[2]-1
+		answer = round(Int, labels[i])
+		if guess == answer
 			N_correct += 1.0
 		end
+		N_tries += 1.0
 		
 		# Print response.
 		#
-		println("  i = $(i), Guess = $(findmax(y5)[2]-1), Answer = $(round(Int, labels[i]))")
+		println("  i = $(i), Guess = $(guess), Answer = $(answer)")
 
 	end
 
