@@ -79,6 +79,10 @@
 # Globals
 ##########################################################################################
 
+	# Remove neurons according to dropout probability.
+	#
+	remove(y) = y.*(dropout .<= rand(size(y))
+
 	# Activation functions.
 	#
 	sigmoid(x) = 1.0./(1.0+exp(-x))
@@ -224,6 +228,12 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 		end
 
 	end
+
+#	# Scale effected weights by dropout probability.
+#	#
+#	W23 *= dropout
+#	W34 *= dropout
+#	W45 *= dropout
 
 ##########################################################################################
 # Save
