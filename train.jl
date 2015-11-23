@@ -235,11 +235,11 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 
 	end
 
-#	# Scale effected weights by dropout probability.
-#	#
-#	W23 *= dropout
-#	W34 *= dropout
-#	W45 *= dropout
+	# Scale effected weights by dropout probability.
+	#
+	W23 *= dropout
+	W34 *= dropout
+	W45 *= dropout
 
 ##########################################################################################
 # Save
