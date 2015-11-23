@@ -1,10 +1,18 @@
 ## Description
 
-No non-sense example of a deep neural network in Julia written from scratch. No machine learning packages are used.
+A simple example of a deep neural network written in Julia is deposited here. The scripts are written from scratch and do not rely on existing Machine Learning packages.
 
-The neural network is trained to reconize hand written characters from the MNIST dataset. The neural network is four layers deep, made up of a sigmoid layer (data layer), followed by three softplus layers, and ending with a softmax layer. No geometric invariances are assumed-this is not a convolutional neural network. Dropout is used to prevent overfitting.
+In this example, the neural network is trained to recognize hand written characters from the MNIST dataset. The five layers listed from top to bottom contain the following neuron types.
 
-Normally the training data should be split into a training set and a validation set so that the hyperparameters such as the learning rate can be optimized. However, non of the hyperparameters were adjusted, so a validation set was not needed.
+| Layer | Neuron Type | Purpose            |
+| :----:|:-----------:|:------------------:|
+| 1     | Sigmoid     | Normalize Features |
+| 2     | Softplus    | Transformation     |
+| 3     | Softplus    | Transformation     |
+| 4     | Softplus    | Transformation     |
+| 5     | Softmax     | Decision Layer     |
+
+No geometric invariances are assumed -- this is not a convolutional neural network. 
 
 ## Download
 
@@ -25,8 +33,8 @@ julia test.jl > test.out
 
 ## THEORY
 
-Backpropagation
-ReLu
-Dropout
-Lack of validation set... no hyperparameter optimization
+* Backpropagation using Cross-entropy error function (Likelihood optimization routine)
+* ReLu (No need to pretrain)
+* Dropout
+* Hyperparameters (linear decay in learning rate, no hyperparameter optimization)
 
