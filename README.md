@@ -11,17 +11,17 @@ In this example, the neural network is trained on the MNIST dataset of hand writ
 
 ## REQUIREMENTS
 
-The code requires the Julia runtime environment. Instructions on how to download and install Julia are [here](http://julialang.org/). Make sure the version of Julia is no older than v0.4.
+The code requires the Julia runtime environment. Instructions on how to download and install Julia are [here](http://julialang.org/). The code has been tested on version 0.4, and will not run on earlier versions.
 
 ## RUN
 
-The scripts will not work without first adding the MNIST dataset. Launch Julia, which can be done by opening the command line terminal and typing `julia`. At the prompt, run `Pkg.add("MNIST")`.
+The scripts will not work without first adding the MNIST dataset. Launch `julia` and at at the prompt run `Pkg.add("MNIST")`.
 
-Once the MNIST dataset has been added the neural network can be trained. The procedure can take several days. Set the working directory to this folder and run the following in the command line terminal.
+Training the neural network can take several days. Set the working directory to this folder and run the following in the command line terminal.
 
 `julia train.jl > train.out`
 
-The neural network will save its parameters to a folder called `bin/` once training is complete. To use the neural network to classify the hand written digits in the test set, run the following command.
+The neural network will save its parameters to a folder called `bin/` once training is complete. To classify the all the hand written digits in the test set, run the following command.
 
 `julia test.jl > test.out`
 
