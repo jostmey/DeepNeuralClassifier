@@ -103,6 +103,10 @@
 		if findmax(y5)[2]-1 == labels[i]
 			N_correct += 1.0
 		end
+		
+		# Print response.
+		#
+		println("  i = $(i), Guess = $(findmax(y5)[2]-1), Answer = $(round(Int, labels[i]))")
 
 	end
 
