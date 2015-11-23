@@ -101,7 +101,7 @@
 
 	# Index for items in the dataset.
 	#
-	k = 1
+	k = 0
 
 	# Holds change in parameters from a minibatch.
 	#
@@ -134,10 +134,14 @@
 		#
 		for j = 1:N_minibatch
 
-			# Load the input and target output.
+			# Load the next item from the dataset.
 			#
+			k = (k < N_datapoints) ? k+1 : 1
+
 			x = 6.0*features[k,:]'-3.0
-			z = zeros(10) ; z[round(Int, labels[k])+1] = 1.0
+
+			z = zeros(10)
+			z[round(Int, labels[k])+1] = 1.0
 
 			# Feedforward pass for computing the output.
 			#
@@ -177,10 +181,6 @@
 				N_correct += 1.0
 			end
 			N_tries += 1.0
-
-			# Update index for items in the dataset.
-			#
-			k = (k < N_datapoints) ? k+1 : 1
 
 		end
 
