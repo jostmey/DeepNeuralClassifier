@@ -91,9 +91,9 @@
 
 	# Derivative of each activation function given the output.
 	#
-	D_sigmoid(y) = y.*(1.0-y)
-	D_softplus(y) = 1.0-exp(-y)
-	D_softmax(y) = y.*(1.0-y)
+	dsigmoid(y) = y.*(1.0-y)
+	dsoftplus(y) = 1.0-exp(-y)
+	dsoftmax(y) = y.*(1.0-y)
 
 ##########################################################################################
 # Train
@@ -144,10 +144,10 @@
 			# Backpropagation for computing the gradients.
 			#
 			e5 = z-y5
-			e4 = (W45*e5).*D_softplus(y4)
-			e3 = (W34*e4).*D_softplus(y3)
-			e2 = (W23*e3).*D_softplus(y2)
-			e1 = (W12*e2).*D_softmax(y1)
+			e4 = (W45*e5).*dsoftplus(y4)
+			e3 = (W34*e4).*dsoftplus(y3)
+			e2 = (W23*e3).*dsoftplus(y2)
+			e1 = (W12*e2).*dsoftmax(y1)
 
 			# Update change in parameters from this minibatch.
 			#
