@@ -2,7 +2,7 @@
 
 ## Description
 
-See example scripts of a deep, feed-forward neural network coded from scratch. No machine learning packages are used, exposing the underlying algorithms. The code is written in the Julia, a programming language with a syntax similar to Matlab.
+See example scripts of a deep, feed-forward neural network coded from scratch. No machine learning packages are used, leaving the underling alrogithms exposed and viewable. The code is written in the Julia, a programming language with a syntax similar to Matlab.
 
 The neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. The results are state of the art for a neural network that does not contain information about the geometric invariances of the data.
 
@@ -38,9 +38,9 @@ Deep neural networks made of sigmoidal neurons suffer from the vanishing gradien
 | Layer | Neuron Type | Purpose                  | Number |
 | :----:|:-----------:|:-------------------------|:------:|
 | 1     | Sigmoid     | Normalize Features       | 28^2   |
-| 2     | Softplus    | Nonlinear Transformation | 500   |
-| 3     | Softplus    | Nonlinear Transformation | 500   |
-| 4     | Softplus    | Nonlinear Transformation | 500   |
+| 2     | Softplus    | Nonlinear Transformation | 500    |
+| 3     | Softplus    | Nonlinear Transformation | 500    |
+| 4     | Softplus    | Nonlinear Transformation | 500    |
 | 5     | Softmax     | Decision Layer           | 1      |
 
 Several hyperparameters effect the performance of the neural network. The learning rate determines the size of the parameter updates. The complete Likelihood function an be preserved as the objective function if the learning rate is adjusted following a schedule that satisfies:
