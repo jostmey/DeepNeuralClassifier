@@ -105,7 +105,7 @@
 			N_correct += 1.0
 		end
 		N_tries += 1.0
-		
+
 		# Print response.
 		#
 		println("  i = $(i), Guess = $(guess), Answer = $(answer)")
