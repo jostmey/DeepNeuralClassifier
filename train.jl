@@ -81,7 +81,7 @@
 
 	# Remove neurons according to dropout probability.
 	#
-	remove(y) = 1.0.*(dropout .<= rand(size(y))
+	remove(n) = 1.0.*(dropout .<= rand(n))
 
 	# Activation functions.
 	#
@@ -126,9 +126,9 @@
 
 		# Generate masks for thinning out neural network (dropout procedure).
 		#
-		r2 = remove(y2)
-		r3 = remove(y3)
-		r4 = remove(y4)
+		r2 = remove(N2)
+		r3 = remove(N3)
+		r4 = remove(N4)
 
 		# Collect multiple updates for minibatch.
 		#
@@ -150,9 +150,9 @@
 			# Backpropagation for computing the gradients.
 			#
 			e5 = z-y5
-			e4 = (W45*e5).*dsoftplus(y4).*r4
-			e3 = (W34*e4).*dsoftplus(y3).*r3
-			e2 = (W23*e3).*dsoftplus(y2).*r2
+			e4 = (W45*e5).*(dsoftplus(y4).*r4)
+			e3 = (W34*e4).*(dsoftplus(y3).*r3)
+			e2 = (W23*e3).*(dsoftplus(y2).*r2)
 			e1 = (W12*e2).*dsoftmax(y1)
 
 			# Update change in parameters from this minibatch.
