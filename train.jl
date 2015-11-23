@@ -220,7 +220,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 			# Print progress report.
 			#
 			println("REPORT")
-			println("  Batch = $(round(Int, i)")
+			println("  Batch = $(round(Int, i))")
 			println("  alpha = $(round(alpha, 5))")
 			println("  Correct = $(round(100.0*N_correct/N_tries, 5))%")
 			println("")
