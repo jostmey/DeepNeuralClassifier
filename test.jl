@@ -48,15 +48,15 @@
 
 	# Neural network parameters.
 	#
-	b1 = 0.1*randn(N1)
-	W12 = 0.1*randn(N1, N2)
-	b2 = 0.1*randn(N2)
-	W23 = 0.1*randn(N2, N3)
-	b3 = 0.1*randn(N3)
-	W34 = 0.1*randn(N3, N4)
-	b4 = 0.1*randn(N4)
-	W45 = 0.1*randn(N4, N5)
-	b5 = 0.1*randn(N5)
+	b1 = readcsv("bin/train_b1.csv")
+	W12 = readcsv("bin/train_W12.csv")
+	b2 = readcsv("bin/train_b2.csv")
+	W23 = readcsv("bin/train_W23.csv")
+	b3 = readcsv("bin/train_b3.csv")
+	W34 = readcsv("bin/train_W34.csv")
+	b4 = readcsv("bin/train_b4.csv")
+	W45 = readcsv("bin/train_W45.csv")
+	b5 = readcsv("bin/train_b5.csv")
 
 ##########################################################################################
 # Macros
