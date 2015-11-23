@@ -46,7 +46,7 @@
 	N4 = 500
 	N5 = 10
 
-	# Neural network parameters.
+	# Load neural network parameters.
 	#
 	b1 = readcsv("bin/train_b1.csv")
 	W12 = readcsv("bin/train_W12.csv")
