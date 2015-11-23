@@ -25,6 +25,8 @@ The neural network will save its parameters to a folder called `bin/` once train
 
 `julia test.jl > test.out`
 
+The percentage of correct answers will be written at the end of the text file `test.out`.
+
 ## THEORY
 
 Feed-forward neural networks are commonly trained using backpropagation to optimize some objective function. The backpropagation algorithm is an efficient way of computing the gradient of a neural network by passing the error at the output layer backward through each layer. Each backward pass amounts to applying the chain-rule from Calculus on the objective function. In this example, the cross-entropy error is used as the objective function. Using the cross-entropy as the error function is an ideal choice because it is equivalient to optimizing the likelihood function. After computing the errors from backprogation at each layer for several cases, a small change in the weights and biases are made. The collection of changes is called a minibatch.
