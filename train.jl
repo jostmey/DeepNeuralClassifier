@@ -175,7 +175,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 
 		end
 
-		# Update the parameters.
+		# Update parameters.
 		#
 		b1 += db1
 		W12 += dW12
@@ -187,7 +187,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 		W45 += dW45
 		b5 += db5
 
-		# Reset the parameter changes (scale by momentum factor).
+		# Reset the parameter changes from the minibatch (scale by momentum factor).
 		#
 		db1 *= momentum
 		dW12 *= momentum
