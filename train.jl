@@ -47,7 +47,7 @@
 	N4 = 500
 	N5 = 10
 
-	# Neural network parameters.
+	# Initialize nural network parameters.
 	#
 	b1 = 0.1*randn(N1)
 	W12 = 0.1*randn(N1, N2)
@@ -63,7 +63,7 @@
 	#
 	alpha = 0.01
 
-	# Dropout probability for removing a neuron.
+	# Dropout probability for removing neurons.
 	#
 	dropout = 0.5
 
@@ -75,7 +75,7 @@
 # Macros
 ##########################################################################################
 
-	# Remove neurons according to dropout probability.
+	# Generate mask for neuron dropout.
 	#
 	remove(n) = 1.0*(dropout .<= rand(n))
 
