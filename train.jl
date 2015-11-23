@@ -37,7 +37,7 @@
 	# Schedule for updating the neural network.
 	#
 	N_minibatch = 100
-	N_updates = round(Int, N_datapoints/N_minibatch)*2
+	N_updates = round(Int, N_datapoints/N_minibatch)*100
 
 	# Number of neurons in each layer.
 	#
@@ -61,7 +61,7 @@
 
 	# Initial learning rate.
 	#
-	alpha = 0.01
+	alpha = 0.1
 
 	# Dropout probability for removing neurons.
 	#
