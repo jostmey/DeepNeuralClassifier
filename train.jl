@@ -256,7 +256,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 
 	# Save the parameters.
 	#
-	writecsv("bin/train_b1.csv", b2)
+	writecsv("bin/train_b1.csv", b1)
 	writecsv("bin/train_W12.csv", W12)
 	writecsv("bin/train_b2.csv", b2)
 	writecsv("bin/train_W23.csv", W23)
