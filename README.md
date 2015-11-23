@@ -5,7 +5,7 @@ A simple example of a deep neural network written in Julia is deposited here. Th
 In this example, the neural network is trained to recognize hand written characters from the MNIST dataset. The five layers listed from top to bottom contain the following neuron types.
 
 | Layer | Neuron Type | Purpose                  |
-| :----:|:-----------:|:------------------------:|
+| :----:|:-----------:|:-------------------------|
 | 1     | Sigmoid     | Normalize Features       |
 | 2     | Softplus    | Nonlinear Transformation |
 | 3     | Softplus    | Nonlinear Transformation |
