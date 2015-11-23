@@ -14,13 +14,19 @@ Normally the training data should be split into a training set and a validation 
 ## REQUIREMENTS
 
 Julia v4.0
+
 Pkg.add("MNIST")
 
 ## RUN
 
 julia train.jl > train.out
+
 julia test.jl > test.out
 
 ## THEORY
 
-To be added...
+Backpropagation
+ReLu
+Dropout
+Lack of validation set... no hyperparameter optimization
+
