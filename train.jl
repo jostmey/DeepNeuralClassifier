@@ -48,7 +48,8 @@
 	N1 = 28^2
 	N2 = 500
 	N3 = 500
-	N4 = 10
+	N4 = 500
+	N5 = 10
 
 	# Neural network parameters.
 	#
@@ -59,6 +60,8 @@
 	b3 = 0.1*randn(N3)
 	W34 = 0.1*randn(N3, N4)
 	b4 = 0.1*randn(N4)
+	W45 = 0.1*randn(N4, N5)
+	b5 = 0.1*randn(N5)
 
 	# Initial learning rate.
 	#
@@ -91,12 +94,14 @@
 	# Variables for storing parameter changes.
 	#
 	db1 = zeros(N1)
-	dW12 = zeros(N1,N2)
+	dW12 = zeros(N1, N2)
 	db2 = zeros(N2)
-	dW23 = zeros(N2,N3)
+	dW23 = zeros(N2, N3)
 	db3 = zeros(N3)
-	dW34 = zeros(N3,N4)
+	dW34 = zeros(N3, N4)
 	db4 = zeros(N4)
+	dW45 = zeros(N4, N5)
+	db5 = zeros(N5)
 
 ##########################################################################################
 # Train
@@ -129,11 +134,13 @@
 			y1 = sigmoid(x+b1)
 			y2 = softplus(W12'*y1+b2)
 			y3 = softplus(W23'*y2+b3)
-			y4 = softmax(W34'*y3+b4)
+			y4 = softplus(W34'*y3+b4)
+			y5 = softmax(W45'*y4+b5)
 
 			# Backpropagation for computing the gradients.
 			#
-			e4 = z-y4
+			e5 = z-y5
+			e4 = (W45*e5).*D_softplus(y4)
 			e3 = (W34*e4).*D_softplus(y3)
 			e2 = (W23*e3).*D_softplus(y2)
 			e1 = (W12*e2).*D_softmax(y1)
@@ -150,11 +157,14 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y2, e3, 1.0, dW23)	# BLAS package faster
 #			dW34 += (alpha/N_minibatch)*(y3*e4')
 BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster at calculating outer product.
 			db4 += (alpha/N_minibatch)*e4
+#			dW45 += (alpha/N_minibatch)*(y4*e5')
+BLAS.gemm!('N', 'T', alpha/N_minibatch, y4, e5, 1.0, dW45)	# BLAS package faster at calculating outer product.
+			db5 += (alpha/N_minibatch)*e5
 
 			# Update percentage of guesses that are correct.
 			#
 			N_tries += 1.0
-			if findmax(z)[2] == findmax(y4)[2]
+			if findmax(z)[2] == findmax(y5)[2]
 				N_correct += 1.0
 			end
 
@@ -173,6 +183,8 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 		b3 += db3
 		W34 += dW34
 		b4 += db4
+		W45 += dW45
+		b5 += db5
 
 		# Scale previous parameter changes by the momentum factor.
 		#
@@ -183,8 +195,10 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 		db3 *= momentum
 		dW34 *= momentum
 		db4 *= momentum
+		dW45 *= momentum
+		db5 *= momentum
 
-		# Adjust the learning rate.
+		# Decrease the learning rate.
 		#
 		alpha = alpha*(N_updates-i)/(N_updates-i+1)
 
@@ -195,15 +209,6 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 			println("REPORT")
 			println("  Batch = $(round(Int, i)")
 			println("  alpha = $(round(alpha, 5))")
-			println("PARAMETERS")
-			println("  Mean(b1) = $(round(mean(b1),5)), Max(b1) = $(round(maximum(b1),5)), Min(b1) = $(round(minimum(b1),5))")
-			println("  Mean(W12) = $(round(mean(W12),5)), Max(W12) = $(round(maximum(W12),5)), Min(W12) = $(round(minimum(W12),5))")
-			println("  Mean(b2) = $(round(mean(b2),5)), Max(b2) = $(round(maximum(b2),5)), Min(b2) = $(round(minimum(b2),5))")
-			println("  Mean(W23) = $(round(mean(W23),5)), Max(W23) = $(round(maximum(W23),5)), Min(W23) = $(round(minimum(W23),5))")
-			println("  Mean(b3) = $(round(mean(b3),5)), Max(b3) = $(round(maximum(b3),5)), Min(b3) = $(round(minimum(b3),5))")
-			println("  Mean(W34) = $(round(mean(W34),5)), Max(W34) = $(round(maximum(W34),5)), Min(W34) = $(round(minimum(W34),5))")
-			println("  Mean(b4) = $(round(mean(b4),5)), Max(b4) = $(round(maximum(b4),5)), Min(b4) = $(round(minimum(b4),5))")
-			println("ACCURACY")
 			println("  Correct = $(round(100.0*N_correct/N_tries, 5))%")
 			println("")
 			flush(STDOUT)
@@ -232,5 +237,6 @@ BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster
 	writecsv("bin/train_b3.csv", b3)
 	writecsv("bin/train_W34.csv", W34)
 	writecsv("bin/train_b4.csv", b4)
-
+	writecsv("bin/train_W45.csv", W45)
+	writecsv("bin/train_b5.csv", b5)
 
