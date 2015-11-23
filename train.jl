@@ -148,16 +148,16 @@
 			# Collect minibatch of updates.
 			#
 			db1 += (alpha/N_minibatch)*e1
-#			dW12 += (alpha/N_minibatch)*(y1*e2')
+#			dW12 += ((alpha/N_minibatch)*y1)*e2'
 BLAS.gemm!('N', 'T', alpha/N_minibatch, y1, e2, 1.0, dW12)	# BLAS package faster at calculating outer product.
 			db2 += (alpha/N_minibatch)*e2
-#			dW23 += (alpha/N_minibatch)*(y2*e3')
+#			dW23 += ((alpha/N_minibatch)*y2)*e3'
 BLAS.gemm!('N', 'T', alpha/N_minibatch, y2, e3, 1.0, dW23)	# BLAS package faster at calculating outer product.
 			db3 += (alpha/N_minibatch)*e3
-#			dW34 += (alpha/N_minibatch)*(y3*e4')
+#			dW34 += ((alpha/N_minibatch)*y3)*e4'
 BLAS.gemm!('N', 'T', alpha/N_minibatch, y3, e4, 1.0, dW34)	# BLAS package faster at calculating outer product.
 			db4 += (alpha/N_minibatch)*e4
-#			dW45 += (alpha/N_minibatch)*(y4*e5')
+#			dW45 += ((alpha/N_minibatch)*y4)*e5'
 BLAS.gemm!('N', 'T', alpha/N_minibatch, y4, e5, 1.0, dW45)	# BLAS package faster at calculating outer product.
 			db5 += (alpha/N_minibatch)*e5
 
