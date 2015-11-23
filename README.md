@@ -13,8 +13,8 @@ Julia v4.0
 
 ## RUN
 
-'julia train.jl > train.out'
-'julia test.jl > test.out'
+`julia train.jl > train.out`
+`julia test.jl > test.out`
 
 ## THEORY
 
