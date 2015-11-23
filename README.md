@@ -1,3 +1,5 @@
+... WORK IN PROGESS ...SUBJECT TO HEAVY REVISION
+
 ## Description
 
 See example scripts of a deep, feed-forward neural network coded from scratch. No machine learning packages are used, exposing the underlying algorithms. The code is written in the Julia, a programming language with a syntax similar to Matlab.
@@ -36,12 +38,17 @@ Deep neural networks made of sigmoidal neurons suffer from the vanishing gradien
 | Layer | Neuron Type | Purpose                  | Number |
 | :----:|:-----------:|:-------------------------|:------:|
 | 1     | Sigmoid     | Normalize Features       | 28^2   |
-| 2     | Softplus    | Nonlinear Transformation | 2000   |
-| 3     | Softplus    | Nonlinear Transformation | 2000   |
-| 4     | Softplus    | Nonlinear Transformation | 2000   |
+| 2     | Softplus    | Nonlinear Transformation | 500   |
+| 3     | Softplus    | Nonlinear Transformation | 500   |
+| 4     | Softplus    | Nonlinear Transformation | 500   |
 | 5     | Softmax     | Decision Layer           | 1      |
 
-* Hyperparameters
+Several hyperparameters effect the performance of the neural network. The learning rate determines the size of the parameter updates. The complete Likelihood function an be preserved as the objective function if the learning rate is adjusted following a schedule that satisfies:
+
+Intuitively, the first constraint ensures that the parameters can reach any point no matter where they are initialized while the second constraint ensures convergence to the specific mode instead of bouncing around it. The conditions require an infinite number of updates. Because the neural network is run only for a finite number of updates, the first condition, which cannot be satisfied, is ignored. To satisty the second condition the learning rate is decayed linearly over the duration of the training procedure.
+
+A momentum term is included to help the training procedure escape local traps. The idea is that the a momentum term will keep the training procedure moving over inflection points. Normally a series of simulations would be run to find the optimal hyperparameters. This would require splitting the training data into a training set and a validation set. However, the results reported here are from only one training run. Therefore, no validation set is required.
+
 * Regularization
 
 
