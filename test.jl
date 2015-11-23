@@ -99,7 +99,7 @@
 
 		# Update percentage of guesses that are correct.
 		#
-		guess = findmax(z)[2]-1
+		guess = findmax(y5)[2]-1
 		answer = round(Int, labels[i])
 		if guess == answer
 			N_correct += 1.0
