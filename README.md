@@ -21,7 +21,7 @@ Once the MNIST dataset has been added the neural network can be trained. The pro
 
 `julia train.jl > train.out`
 
-The neural network will save its parameters to a folder called `bin` once training is complete. To use the neural network to classify the hand written digits in the test set, run the following command.
+The neural network will save its parameters to a folder called `bin/` once training is complete. To use the neural network to classify the hand written digits in the test set, run the following command.
 
 `julia test.jl > test.out`
 
