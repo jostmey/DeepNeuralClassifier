@@ -76,7 +76,7 @@
 	momentum = 0.75
 
 ##########################################################################################
-# Globals
+# Macros
 ##########################################################################################
 
 	# Remove neurons according to dropout probability.
@@ -260,4 +260,3 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 	writecsv("bin/train_b4.csv", b4)
 	writecsv("bin/train_W45.csv", W45)
 	writecsv("bin/train_b5.csv", b5)
-
