@@ -247,7 +247,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 
 	# Create folder to hold parameters.
 	#
-	mkdir("bin/")
+	mkdir("bin")
 
 	# Save the parameters.
 	#
