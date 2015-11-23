@@ -81,7 +81,7 @@
 
 	# Remove neurons according to dropout probability.
 	#
-	remove(n) = 1.0.*(dropout .<= rand(n))
+	remove(n) = 1.0*(dropout .<= rand(n))
 
 	# Activation functions.
 	#
@@ -137,7 +137,7 @@
 			# Load the input and target output.
 			#
 			x = 6.0*features[k,:]'-3.0
-			z = zeros(10) ; z[labels[k]+1] = 1.0
+			z = zeros(10) ; z[round(Int, labels[k])+1] = 1.0
 
 			# Feedforward pass for computing the output.
 			#
