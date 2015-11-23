@@ -174,7 +174,7 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 
 			# Update percentage of guesses that are correct.
 			#
-			guess = findmax(z)[2]-1
+			guess = findmax(y5)[2]-1
 			answer = round(Int, labels[k])
 			if guess == answer
 				N_correct += 1.0
