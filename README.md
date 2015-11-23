@@ -1,6 +1,6 @@
 ## Description
 
-See example scripts of a deep neural network coded from scratch. No machine learning packages are used, exposing the underlying algorithms. The code is written in the Julia, a programming language with a syntax similar to Matlab.
+See example scripts of a deep, feed-forward neural network coded from scratch. No machine learning packages are used, exposing the underlying algorithms. The code is written in the Julia, a programming language with a syntax similar to Matlab.
 
 In this example, the neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. These are near state of the art results for a neural network that does not contain any information about the geometric invariances of the data.
 
@@ -27,16 +27,19 @@ The neural network will save its parameters to a folder called `bin/` once train
 
 ## THEORY
 
-* Backpropagation using Cross-entropy error function (Likelihood optimization routine)
-* ReLu (No need to pretrain)
-* Dropout
-* Hyperparameters (linear decay in learning rate, no hyperparameter optimization)
+Feed-forward neural networks are commonly trained using backpropagation to optimize some objective function. The backpropagation algorithm is an efficient way of computing the gradient of a neural network by passing the error at the output layer backward through each layer. Each backward pass amounts to applying the chain-rule from Calculus on the objective function. In this example, the cross-entropy error is used as the objective function. Using the cross-entropy as the error function is an ideal choice because it is equivalient to optimizing the likelihood function. After computing the errors from backprogation at each layer for several cases, a small change in the weights and biases are made. The collection of changes is called a minibatch.
 
-| Layer | Neuron Type | Purpose                  |
-| :----:|:-----------:|:-------------------------|
-| 1     | Sigmoid     | Normalize Features       |
-| 2     | Softplus    | Nonlinear Transformation |
-| 3     | Softplus    | Nonlinear Transformation |
-| 4     | Softplus    | Nonlinear Transformation |
-| 5     | Softmax     | Decision Layer           |
+Deep neural networks made of sigmoidal neurons suffer from the vanishing gradient problem. This is where the errors in the backpropagation pass become smaller and smaller each after each layer. By the time the top layer is reached the errors are almost zero. An intractable number of updates would be required to train the neural network. To overcome the shortcoming of the sigmoidal units, Rectified Linear units were introduced. Here, a smooth generalization of the Rectified Linear unit is used called the Softmax unit. Becaus the output is not a binary response, a softmax unit is used in the last layer of the neural network to choose from the list of handwritten digits. The neural architecture is summarizer in the following table.
+
+| Layer | Neuron Type | Purpose                  | Number |
+| :----:|:-----------:|:-------------------------|:------:|
+| 1     | Sigmoid     | Normalize Features       | 28^2   |
+| 2     | Softplus    | Nonlinear Transformation | 2000   |
+| 3     | Softplus    | Nonlinear Transformation | 2000   |
+| 4     | Softplus    | Nonlinear Transformation | 2000   |
+| 5     | Softmax     | Decision Layer           | 1      |
+
+* Hyperparameters
+* Regularization
+
 
