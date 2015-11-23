@@ -158,18 +158,15 @@
 			# Update change in parameters from this minibatch.
 			#
 			scale = alpha/N_minibatch
+
 			db1 += scale*e1
-#			dW12 += (scale*y1)*e2'
-BLAS.gemm!('N', 'T', scale, y1, e2, 1.0, dW12)	# BLAS package faster at calculating outer product.
+			dW12 += (scale*y1)*e2'
 			db2 += scale*e2
-#			dW23 += (scale*y2)*e3'
-BLAS.gemm!('N', 'T', scale, y2, e3, 1.0, dW23)	# BLAS package faster at calculating outer product.
+			dW23 += (scale*y2)*e3'
 			db3 += scale*e3
-#			dW34 += (scale*y3)*e4'
-BLAS.gemm!('N', 'T', scale, y3, e4, 1.0, dW34)	# BLAS package faster at calculating outer product.
+			dW34 += (scale*y3)*e4'
 			db4 += scale*e4
-#			dW45 += (scale*y4)*e5'
-BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculating outer product.
+			dW45 += (scale*y4)*e5'
 			db5 += scale*e5
 
 			# Update percentage of guesses that are correct.
@@ -211,9 +208,9 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 		dW45 *= momentum
 		db5 *= momentum
 
-		# Decrease the learning rate.
+		# Linearly decrease the learning rate.
 		#
-		alpha = alpha*(N_updates-i)/(N_updates-i+1)
+		alpha *= (N_updates-i)/(N_updates-i+1)
 
 		# Periodic checks.
 		#
@@ -226,7 +223,6 @@ BLAS.gemm!('N', 'T', scale, y4, e5, 1.0, dW45)	# BLAS package faster at calculat
 			println("  alpha = $(round(alpha, 5))")
 			println("  Correct = $(round(100.0*N_correct/N_tries, 5))%")
 			println("")
-			flush(STDOUT)
 
 			# Reset percentage of guesses that are correct.
 			#
