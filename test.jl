@@ -122,7 +122,7 @@
 
 	# Print progress report.
 	#
-	println("REPORT")
+	println("SCORE")
 	println("  Correct = $(round(100.0*N_correct/N_tries, 5))%")
 	println("")
 
