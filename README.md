@@ -31,11 +31,17 @@ The percentage of correct answers will be written at the end of the text file `t
 
 ## THEORY
 
-###### Computing Gradients
+###### Training
 
 Feed-forward neural networks are commonly trained using Backpropagation to minimize the error between the actual output and the desired output. The Backpropgation algorithm is an efficient method for computing the gradient of the error. The error from the output is passed backward through the weights of the neural network, multipling the errors by the derivative of that layer. The operation amounts to applying the Chain rule from calculus to compute the gradients. The error-loss is minimized by moving the weights of the neural network down the gradient.
 
 The cross-entropy error function is used here. It is an ideal choice for an objective function because it is equivalent to optimizing the Likelihood function. To follow the true gradient of the Likelihood function would require using the entire dataset at each iteration to update the weights. In practice only a subset of the training examples called a minibatch are used at each iteration, with unused training examples set aside to use in later minibatches.
+
+Several hyperparameters effect the performance of the neural network. The learning rate determines the size of the parameter updates. The complete Likelihood function an be preserved as the objective function if the learning rate is adjusted following a schedule that satisfies:
+
+Intuitively, the first constraint ensures that the parameters can reach any point no matter where they are initialized while the second constraint ensures convergence to the specific mode instead of bouncing around it. The conditions require an infinite number of updates. Because the neural network is run only for a finite number of updates, the first condition, which cannot be satisfied, is ignored. To satisty the second condition the learning rate is decayed linearly over the duration of the training procedure.
+
+A momentum term is included to help the training procedure escape local traps. The idea is that the a momentum term will keep the training procedure moving over inflection points. Normally a series of simulations would be run to find the optimal hyperparameters. This would require splitting the training data into a training set and a validation set. However, the results reported here are from only one training run. Therefore, no validation set is required.
 
 ###### Architecture
 
@@ -49,12 +55,7 @@ Deep neural networks made of sigmoidal neurons suffer from the vanishing gradien
 | 4     | Softplus    | Nonlinear Transformation | 500    |
 | 5     | Softmax     | Decision Layer           | 1      |
 
-Several hyperparameters effect the performance of the neural network. The learning rate determines the size of the parameter updates. The complete Likelihood function an be preserved as the objective function if the learning rate is adjusted following a schedule that satisfies:
+###### Regularization
 
-Intuitively, the first constraint ensures that the parameters can reach any point no matter where they are initialized while the second constraint ensures convergence to the specific mode instead of bouncing around it. The conditions require an infinite number of updates. Because the neural network is run only for a finite number of updates, the first condition, which cannot be satisfied, is ignored. To satisty the second condition the learning rate is decayed linearly over the duration of the training procedure.
-
-A momentum term is included to help the training procedure escape local traps. The idea is that the a momentum term will keep the training procedure moving over inflection points. Normally a series of simulations would be run to find the optimal hyperparameters. This would require splitting the training data into a training set and a validation set. However, the results reported here are from only one training run. Therefore, no validation set is required.
-
-* Regularization
 
 
