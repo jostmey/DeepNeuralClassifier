@@ -2,9 +2,9 @@
 
 ## Description
 
-See example scripts of a deep, feed-forward neural network coded from scratch. No machine learning packages are used, leaving the underling alrogithms exposed and viewable. The code is written in the Julia, a programming language with a syntax similar to Matlab.
+Example scripts for a deep, feed-forward neural network have been coded from scratch. No machine learning packages are used, leaving the underling alrogithms exposed and viewable. The code is written in the Julia, a programming language with a syntax similar to Matlab.
 
-The neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. The results are state of the art for a neural network that does not contain information about the geometric invariances of the data.
+The neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. The results are state of the art for a neural network that does not contain a priori knowledge about the geometric invariances of the data like a Convolutional Neural Network does.
 
 ## Download
 
@@ -13,17 +13,17 @@ The neural network is trained on the MNIST dataset of hand written digits. On th
 
 ## REQUIREMENTS
 
-The code requires the Julia runtime environment. Instructions on how to download and install Julia are [here](http://julialang.org/). The code has been tested on version 0.4, and will not run on earlier versions.
+The code requires the Julia runtime environment. Instructions on how to download and install Julia are [here](http://julialang.org/). The scripts have been developed using version 0.4 and do not work on previous versions of Julia.
 
 ## RUN
 
-The scripts will not work without first adding the MNIST dataset. Launch `julia` and at at the prompt run `Pkg.add("MNIST")`.
+You must first add the MNIST dataset to Julia. Launch `julia` and run `Pkg.add("MNIST")` at the prompt.
 
 Training the neural network can take several days. Set the working directory to this folder and run the following in the command line terminal.
 
 `julia train.jl > train.out`
 
-The neural network will save its parameters to a folder called `bin/` once training is complete. To classify the all the hand written digits in the test set, run the following command.
+The neural network will save its parameters to a folder called `bin/` once training is complete. To classify all hand written digits in the test set, run the following command.
 
 `julia test.jl > test.out`
 
