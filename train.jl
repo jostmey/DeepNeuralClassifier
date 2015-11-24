@@ -47,7 +47,7 @@
 	N4 = 500
 	N5 = 10
 
-	# Initialize nural network parameters.
+	# Initialize neural network parameters.
 	#
 	b1 = 0.1*randn(N1)
 	W12 = 0.1*randn(N1, N2)
