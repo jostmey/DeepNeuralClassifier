@@ -31,7 +31,13 @@ The percentage of correct answers will be written at the end of the text file `t
 
 ## THEORY
 
-Feed-forward neural networks are commonly trained using backpropagation to optimize some objective function. The backpropagation algorithm is an efficient way of computing the gradient of a neural network by passing the error at the output layer backward through each layer. Each backward pass amounts to applying the chain-rule from Calculus on the objective function. In this example, the cross-entropy error is used as the objective function. Using the cross-entropy as the error function is an ideal choice because it is equivalient to optimizing the likelihood function. After computing the errors from backprogation at each layer for several cases, a small change in the weights and biases are made. The collection of changes is called a minibatch.
+###### Computing Gradients
+
+Feed-forward neural networks are commonly trained using Backpropagation to minimize the error between the actual output and the desired output. The Backpropgation algorithm is an efficient method for computing the gradient of the error. The error from the output is passed backward through the weights of the neural network, multipling the errors by the derivative of that layer. The operation amounts to applying the Chain rule from calculus to compute the gradients. The error-loss is minimized by moving the weights of the neural network down the gradient.
+
+The cross-entropy error function is used here. It is an ideal choice for an objective function because it is equivalent to optimizing the Likelihood function. To follow the true gradient of the Likelihood function would require using the entire dataset at each iteration to update the weights. In practice only a subset of the training examples called a minibatch are used at each iteration, with unused training examples set aside to use in later minibatches.
+
+###### Architecture
 
 Deep neural networks made of sigmoidal neurons suffer from the vanishing gradient problem. This is where the errors in the backpropagation pass become smaller and smaller each after each layer. By the time the top layer is reached the errors are almost zero. An intractable number of updates would be required to train the neural network. To overcome the shortcoming of the sigmoidal units, Rectified Linear units were introduced. Rectified linear units are linear over all inputs greater than zero, and hence the derivative is well behaved over this region. The units still introduce a nonlinearty by defining boundaries where values are zero. Here, a smooth generalization of the Rectified Linear unit is used called the Softmax unit. Because the output is not a binary response, a softmax unit is used in the last layer of the neural network to choose from the list of handwritten digits. The neural architecture is summarizer in the following table.
 
