@@ -138,23 +138,17 @@
 			# Feedforward pass for computing the output.
 			#
 			y1 = sigmoid(x+b1)
-			y2 = softplus(W12'*y1+b2)
-y2 = y2.*r2
-			y3 = softplus(W23'*y2+b3)
-y3 = y3.*r3
-			y4 = softplus(W34'*y3+b4)
-y4 = y4.*r4
+			y2 = softplus(W12'*y1+b2).*r2
+			y3 = softplus(W23'*y2+b3).*r3
+			y4 = softplus(W34'*y3+b4).*r4
 			y5 = softmax(W45'*y4+b5)
 
 			# Backpropagation for computing the gradients.
 			#
 			e5 = z-y5
-			e4 = (W45*e5).*dsoftplus(y4)
-e4 = e4.*r4
-			e3 = (W34*e4).*dsoftplus(y3)
-e3 = e3.*r3
-			e2 = (W23*e3).*dsoftplus(y2)
-e2 = e2.*r2
+			e4 = (W45*e5).*dsoftplus(y4).*r4
+			e3 = (W34*e4).*dsoftplus(y3).*r3
+			e2 = (W23*e3).*dsoftplus(y2).*r2
 			e1 = (W12*e2).*dsoftmax(y1)
 
 			# Update change in parameters for this minibatch.
