@@ -128,7 +128,6 @@
 
 			# Load the next item from the dataset.
 			#
-#			k = (k < N_datapoints) ? k+1 : 1
 			k = rand(1:N_datapoints)
 
 			x = 6.0*features[k,:]'-3.0
