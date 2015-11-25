@@ -2,9 +2,9 @@
 
 ## Description
 
-Example scripts for a deep, feed-forward neural network have been written from scratch. No machine learning packages are used so the underling algorithms can been seen on a single page. The code is written in the Julia, a programming language with a syntax similar to Matlab.
+Example scripts for a deep, feed-forward neural network have been written from scratch. No machine learning packages are used so the underlying algorithms can been seen on a single page. The code is written in the Julia, a programming language with a syntax similar to Matlab.
 
-The neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. The results are state of the art for a neural network that does not contain a priori knowledge about the geometric invariances of the dataset like a Convolutional Neural Network does.
+The neural network is trained on the MNIST dataset of handwritten digits. On the test dataset, the neural network correctly classifies XX % of the handwritten digits. The results are state of the art for a neural network that does not contain a priori knowledge about the geometric invariances of the dataset like a Convolutional Neural Network does.
 
 ## Download
 
@@ -23,7 +23,7 @@ Training the neural network can take several days. Set the working directory to 
 
 `julia train.jl > train.out`
 
-The neural network will save its parameters to a folder called `bin/` once training is complete. To classify the hand written digits in the test set, run the following command.
+The neural network will save its parameters to a folder called `bin/` once training is complete. To classify the handwritten digits in the test set, run the following command.
 
 `julia test.jl > test.out`
 
@@ -33,9 +33,9 @@ The percentage of correct answers will be written at the end of the text file `t
 
 ###### Training
 
-Feed-forward neural networks are commonly trained using *backpropagation* to minimize the error between the desired and actual output. The backpropgation algorithm is an efficient method for computing the gradient of the error-loss function. The error from the output is passed backward through the weights of the neural network, multipling the errors by the derivative of that layer. Each backward pass through a previous layer amounts to carrying out the Chain rule (from Calculus) to compute the derivative. The error-loss is minimized by moving the weights of the neural network down the gradient. Changes are made to the weights in small, discrete steps determined by the value of the *learning rate*.
+Feed-forward neural networks are commonly trained using *backpropagation* to minimize the error between the desired and actual output. The backpropagation algorithm is an efficient method for computing the gradient of the error-loss function. The error from the output is passed backward through the weights of the neural network, multiplying the errors by the derivative of that layer. Each backward pass through a previous layer amounts to carrying out the Chain rule (from Calculus) to compute the derivative. The error-loss is minimized by moving the weights of the neural network down the gradient. Changes are made to the weights in small, discrete steps determined by the value of the *learning rate*.
 
-Minimizing the cross-entropy error is equivalent to maximizing the Likelihood function, allowing us to train neural networks using Maximum Likelihood methods. To follow the true gradient of the Likelihood function would require using the entire dataset at each iteration to update the weights. In practice, only a minibatch is used each time. The unused examples are set aside for use in future minibatches. By not using the entire dataset, the objective function is lost. That said, theoretical evidence suggests that the use of minibatches will not distort the objective function if the learning rate is decreased at each iteration following a specific schedule [1]. The schedule used here is an approximation--the learning rate is decreased following a linear progression.
+Minimizing the cross-entropy error is equivalent to maximizing the Likelihood function, allowing us to train neural networks using Maximum Likelihood methods. To follow the true gradient of the Likelihood function would require using the entire dataset at each iteration to update the weights. In practice, only a mini-batch is used each time. The unused examples are set aside for use in future mini-batches. By not using the entire dataset, the objective function is lost. That said, theoretical evidence suggests that the use of mini-batches will not distort the objective function if the learning rate is decreased at each iteration following a specific schedule [1]. The schedule used here is an approximation--the learning rate is decreased following a linear progression.
 
 A problem with gradient optimization methods such as backpropagation is that the fitting procedure may not find the global minima of the error-loss function. A momentum term is included to help escape from local minimums.
 
@@ -43,7 +43,7 @@ A problem with gradient optimization methods such as backpropagation is that the
 
 The idea behind a deep neural network is to pass the data through several non-linear transformations. Hierarchical representations of the data start to form in the deeper layers. Unfortunately, deep models are more challenging to train and require more computing power.
 
-Neural networks using only sigmoidal units suffer from the vanishing gradient problem where the backpropagated signal becomes smaller with each layer. After three layers the error is almost zero. An infeasible number of updates would be required to train such a neural network. Rectified linear units have been introduced to overcome this problem [2]. Rectified linear units are linear when the input is positive but zero everywhere else. The magnitude of the backpropagated signal does not vanish because of the neuron's linear compoonent, but the nonlinearity still makes it possible for the units to shape the boundaries between different classes in the data. A smooth generalization of the rectified linear unit is used, called a Softmax unit.
+Neural networks using only sigmoidal units suffer from the vanishing gradient problem where the backpropagated signal becomes smaller with each layer. After three layers the error is almost zero. An infeasible number of updates would be required to train such a neural network. Rectified linear units have been introduced to overcome this problem [2]. Rectified linear units are linear when the input is positive but zero everywhere else. The magnitude of the backpropagated signal does not vanish because of the neuron's linear component, but the nonlinearity still makes it possible for the units to shape the boundaries between different classes in the data. A smooth generalization of the rectified linear unit is used, called a Softmax unit.
 
 Because the output contains more than just two answers, a simple binary neuron will not do. A softmax unit, which is a multinomial generalization of a neuron, is used at the output of the neural network [3].
 
@@ -59,7 +59,7 @@ The architecture of the neural network is detailed in the Table below.
 
 ###### Regularization
 
-The neural network contains nearly a million parameters making in prone to overfitting. Dropout is a powerful method for regularization [4]. At each iteration, neurons are removed from the neural network with a probability of 50%. The thinned out neural network is then trained using backpropagation. During the next iteration, all the neurons are restored and the dropout procedure is repeated to thin out a different set of neurons. The neural network effectively learns how to correctly classify the data with approximately half of the neurons missing. Once training is complete, the weights are scaled back by 50% so that all the neurons can be used at the same time. The dropout procedure is equivalent to averaging together an exponential number of models together using the geometric mean.
+The neural network contains nearly a million parameters making it prone to overfitt on small datasets. Dropout is a powerful method for regularization [4]. At each iteration, neurons are removed from the neural network with a probability of 50%. The thinned out neural network is then trained using backpropagation. During the next iteration, all the neurons are restored and the dropout procedure is repeated to thin out a different set of neurons. The neural network effectively learns how to correctly classify the data with approximately half of the neurons missing. Once training is complete, the weights are scaled back by 50% so that all the neurons can be used at the same time. The dropout procedure is equivalent to averaging together an exponential number of models together using the geometric mean.
 
 Normally the training data should be split into a training and validation set. Multiple versions of the model are then trained each using different values for the learning rate, momentum factor, dropout probability, and number of updates. The model that scores the highest on the validation set is then used on the test data. The use of a validation set means that the test data is never seen while selecting the best model, which means we do not cheat to get the best model. However, no validation set is used in this example because the model was never refined--only one version of the model was trained. The model was then tested directly on the test data.
 
