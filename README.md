@@ -64,7 +64,8 @@ The neural network contains nearly a million parameters making in prone to overf
 * Why no validation set?
 
 ###### References
-[//]: <> (BIBLIOGRAPHY STYLE: MLA)
+
+comment]: # (BIBLIOGRAPHY STYLE: MLA)
 
 1. Rumelhart, David E., Geoffrey E. Hinton, and Ronald J. Williams. *Learning internal representations by error propagation.* No. ICS-8506. CALIFORNIA UNIV SAN DIEGO LA JOLLA INST FOR COGNITIVE SCIENCE, 1985.
 2. Robbins, Herbert, and Sutton Monro. "A stochastic approximation method." The annals of mathematical statistics (1951): 400-407.
