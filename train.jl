@@ -30,6 +30,10 @@
 	#
 	N_datapoints = size(features, 1)
 
+# Randomly shuffle dataset.
+#
+#map = shuffle(collect(1:N_datapoints))
+
 ##########################################################################################
 # Settings
 ##########################################################################################
@@ -95,10 +99,6 @@
 # Train
 ##########################################################################################
 
-	# Index for items in the dataset.
-	#
-	k = 0
-
 	# Holds change in parameters from a minibatch.
 	#
 	db1 = zeros(N1)
@@ -132,7 +132,8 @@
 
 			# Load the next item from the dataset.
 			#
-			k = (k < N_datapoints) ? k+1 : 1
+#			k = (k < N_datapoints) ? k+1 : 1
+			k = rand(1:N_datapoints)
 
 			x = 6.0*features[k,:]'-3.0
 
