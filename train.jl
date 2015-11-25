@@ -140,9 +140,12 @@
 			#
 			y1 = sigmoid(x+b1)
 			y2 = softplus(W12'*y1+b2)
-			y3 = softplus(W23'*(y2.*r2)+b3)
-			y4 = softplus(W34'*(y3.*r3)+b4)
-			y5 = softmax(W45'*(y4.*r4)+b5)
+y2 = y2.*r2
+			y3 = softplus(W23'*y2+b3)
+y3 = y3.*r3
+			y4 = softplus(W34'*y3+b4)
+y4 = y4.*r4
+			y5 = softmax(W45'*y4+b5)
 
 			# Backpropagation for computing the gradients.
 			#
