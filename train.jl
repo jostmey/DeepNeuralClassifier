@@ -150,9 +150,12 @@ y4 = y4.*r4
 			# Backpropagation for computing the gradients.
 			#
 			e5 = z-y5
-			e4 = (W45*e5).*dsoftplus(y4).*r4
-			e3 = (W34*e4).*dsoftplus(y3).*r3
-			e2 = (W23*e3).*dsoftplus(y2).*r2
+			e4 = (W45*e5).*dsoftplus(y4)
+e4 = e4.*r4
+			e3 = (W34*e4).*dsoftplus(y3)
+e3 = e3.*r3
+			e2 = (W23*e3).*dsoftplus(y2)
+e2 = e2.*r2
 			e1 = (W12*e2).*dsoftmax(y1)
 
 			# Update change in parameters from this minibatch.
