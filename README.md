@@ -2,7 +2,7 @@
 
 ## Description
 
-Example scripts for a deep, feed-forward neural network have been coded from scratch. No machine learning packages are used, leaving the underling alrogithms exposed and viewable. The code is written in the Julia, a programming language with a syntax similar to Matlab.
+Example scripts for a deep, feed-forward neural network have been written from scratch. No machine learning packages are used so the underling algorithms can been seen on a single page. The code is written in the Julia, a programming language with a syntax similar to Matlab.
 
 The neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. The results are state of the art for a neural network that does not contain a priori knowledge about the geometric invariances of the dataset like a Convolutional Neural Network does.
 
@@ -61,7 +61,7 @@ The architecture of the neural network is detailed in the Table below.
 
 The neural network contains nearly a million parameters making in prone to overfitting. Dropout is a powerful method for regularization [5]. At each iteration, neurons are removed from the neural network with a probability of 50%. The thinned out neural network is then trained using Backpropagation. During the next iteration, all the neurons are restored and the dropout procedure is repeated to thin the neural network again removing a new set of neurons. The neural network effectively learns how to classify with approximately half of the neurons missing. Once training is complete, the weights are scaled back by 50% so that all the neurons can be used at the same time. The dropout procedure is equivalent to averaging together an exponential number of models together as one using the geometric mean.
 
-* Why no validation set?
+Normally the training data should be split into training and validation set. The model is then trained several using different values for the number of training iterations, learning rate, momentum factor, and dropout probability. The model that scores the highest on the validation set is then used on the test data. The use of a validation set means that the test data is never seen during when selecting the best model, which would amount to cheating on test set. However, no validation set is used in this example because the model was never refined--only one model was trained. Hence, a validation set is not required here.
 
 ###### References
 
