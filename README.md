@@ -41,7 +41,13 @@ A problem with gradient optimization methods such as Backpropagation is that the
 
 ###### Architecture
 
-Deep neural networks made of sigmoidal neurons suffer from the vanishing gradient problem. This is where the errors in the backpropagation pass become smaller and smaller each after each layer. By the time the top layer is reached the errors are almost zero. An intractable number of updates would be required to train the neural network. To overcome the shortcoming of the sigmoidal units, Rectified Linear units were introduced. Rectified linear units are linear over all inputs greater than zero, and hence the derivative is well behaved over this region. The units still introduce a nonlinearty by defining boundaries where values are zero. Here, a smooth generalization of the Rectified Linear unit is used called the Softmax unit. Because the output is not a binary response, a softmax unit is used in the last layer of the neural network to choose from the list of handwritten digits. The neural architecture is summarizer in the following table.
+The idea behind a deep neural network is to pass the data through several non-linear transformations. Hierarchical representations of the data start to form in the deeper layers.
+
+Neural networks using only sigmoidal units suffer from the vanishing gradient problem, which is where the backpropagated signal becomes smaller with each layer it passes through. After three layers the error is almost zero. An infeasible number of updates would be required to train such a neural network. Rectified linear units have introduced to overcome the vanishing gradient problem. Rectified linear units are linear when the input is greater than zero but zero everywhere else. The magnitude of the backpropagated signal does not vanish because of the neuron's linear compoonent, but the nonlinearity still allows for the units to shape the boundaries between different classes in the data. A smooth generalization of the Rectified linear unit is used, called a Softmax unit.
+
+The output of a neuron is binary response. To classify the hand written digits in the training data, a softmax unit is used. Softmax units are a multinomial generalization of a neuron capable of expressing more than two outcomes.
+
+The architecture of the neural network is detailed in the Table below.
 
 | Layer | Neuron Type | Purpose                  | Number |
 | :----:|:-----------:|:-------------------------|:------:|
