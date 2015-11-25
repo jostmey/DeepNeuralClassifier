@@ -43,9 +43,9 @@ A problem with gradient optimization methods such as Backpropagation is that the
 
 The idea behind a deep neural network is to pass the data through several non-linear transformations. Hierarchical representations of the data start to form in the deeper layers.
 
-Neural networks using only sigmoidal units suffer from the vanishing gradient problem, which is where the backpropagated signal becomes smaller with each layer it passes through. After three layers the error is almost zero. An infeasible number of updates would be required to train such a neural network. Rectified linear units have introduced to overcome the vanishing gradient problem. Rectified linear units are linear when the input is greater than zero but zero everywhere else. The magnitude of the backpropagated signal does not vanish because of the neuron's linear compoonent, but the nonlinearity still allows for the units to shape the boundaries between different classes in the data. A smooth generalization of the Rectified linear unit is used, called a Softmax unit.
+Neural networks using only sigmoidal units suffer from the vanishing gradient problem where the backpropagated signal becomes smaller with each layer it passes through. After three layers the error is almost zero. An infeasible number of updates would be required to train such a neural network. Rectified linear units have been introduced to overcome this problem. Rectified linear units are linear when the input is positive but zero everywhere else. The magnitude of the backpropagated signal does not vanish because of the neuron's linear compoonent, but the nonlinearity still allows for the units to shape the boundaries between different classes in the data. A smooth generalization of the rectified linear unit is used, called a Softmax unit.
 
-The output of a neuron is binary response. To classify the hand written digits in the training data, a softmax unit is used. Softmax units are a multinomial generalization of a neuron capable of expressing more than two outcomes.
+The output of a neuron is binary response. A softmax unit is used to choose between more than two answers. Softmax units are a multinomial generalization of a neuron capable of expressing more than two outcomes.
 
 The architecture of the neural network is detailed in the Table below.
 
