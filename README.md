@@ -1,5 +1,3 @@
-... WORK IN PROGESS ...SUBJECT TO HEAVY REVISION
-
 ## Description
 
 Example scripts for a deep, feed-forward neural network have been written from scratch. No machine learning packages are used so the underlying algorithms can been seen on a single page. The code is written in the Julia, a programming language with a syntax similar to Matlab.
