@@ -143,7 +143,7 @@
 			y4 = softplus(W34'*y3+b4).*r4
 			y5 = softmax(W45'*y4+b5)
 
-			# Backpropagation for computing the gradients.
+			# Backpropagation for computing the gradients of the cross-entropy error function.
 			#
 			e5 = z-y5
 			e4 = (W45*e5).*dsoftplus(y4).*r4
@@ -151,7 +151,7 @@
 			e2 = (W23*e3).*dsoftplus(y2).*r2
 			e1 = (W12*e2).*dsoftmax(y1)
 
-			# Update change in parameters for this minibatch.
+			# Add the gradient to the minibatch.
 			#
 			scale = alpha/N_minibatch
 
