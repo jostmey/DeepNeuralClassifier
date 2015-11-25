@@ -33,13 +33,13 @@ The percentage of correct answers will be written at the end of the text file `t
 
 ###### Training
 
-Feed-forward neural networks are commonly trained using Backpropagation to minimize the error between the desired and actual output. The Backpropgation algorithm is an efficient method for computing the gradient of the error. The error from the output is passed backward through the weights of the neural network, multipling the errors by the derivative of that layer. Each pass of the errors through a previous layer amounts to carrying out the Chain rule from calculus to compute the derivative. The error-loss is minimized by moving the weights of the neural network down the gradient. Changes are made to the weights in small, discrete steps determined by the value put in the *learning rate*.
+Feed-forward neural networks are commonly trained using Backpropagation to minimize the error between the desired and actual output. The Backpropgation algorithm is an efficient method for computing the gradient of the error. The error from the output is passed backward through the weights of the neural network, multipling the errors by the derivative of that layer. Each pass of the errors through a previous layer amounts to carrying out the Chain rule from calculus to compute the derivative. The error-loss is minimized by moving the weights of the neural network down the gradient. Changes are made to the weights in small, discrete steps determined by the value of the *learning rate*.
 
-Minimizing the cross-entropy error is equivalent to maximizing the Likelihood function, allowing us to train neural networks using Maximum Likelihood methods. To follow the true gradient of the Likelihood function would require using the entire dataset to update the weights each iteration. In practice, only a minibatch is used at each iteration with unused examples set aside to use in future minibatches. That said, theoretical evidence exists indicating that the use of minibatches will not distort the objective function if the learning rate is decreased at each iteration following a specific schedule. The schedule used here is an approximation---the learning rate is decreased following a linear progression.
+Minimizing the cross-entropy error is equivalent to maximizing the Likelihood function, allowing us to train neural networks using Maximum Likelihood methods. To follow the true gradient of the Likelihood function would require using the entire dataset to update the weights each iteration. In practice, only a minibatch is used at each iteration with unused examples set aside to use in future minibatches. That said, theoretical evidence exists indicating that the use of minibatches will not distort the objective function if the learning rate is decreased at each iteration following a specific schedule. The schedule used here is an approximation--the learning rate is decreased following a linear progression.
 
-% A momentum term is included to help the training procedure escape inflection points and local minima. The idea is that adding momentum will help the parameter overcome
+A problem with gradient optimization methods such as Backpropagation is that the fitting procedure may not find the global minima of the error-loss function. A momentum term is included to help escape from a local minima of the error-loss function.
 
-% A momentum term is included to help the training procedure escape local traps. The idea is that the a momentum term will keep the training procedure moving over inflection points. Normally a series of simulations would be run to find the optimal hyperparameters. This would require splitting the training data into a training set and a validation set. However, the results reported here are from only one training run. Therefore, no validation set is required.
+
 
 ###### Architecture
 
@@ -55,5 +55,5 @@ Deep neural networks made of sigmoidal neurons suffer from the vanishing gradien
 
 ###### Regularization
 
-
-
+* Dropout
+* Why no validation set?
