@@ -158,7 +158,7 @@ e3 = e3.*r3
 e2 = e2.*r2
 			e1 = (W12*e2).*dsoftmax(y1)
 
-			# Update change in parameters from this minibatch.
+			# Update change in parameters for this minibatch.
 			#
 			scale = alpha/N_minibatch
 
