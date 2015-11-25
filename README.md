@@ -4,7 +4,7 @@
 
 Example scripts for a deep, feed-forward neural network have been coded from scratch. No machine learning packages are used, leaving the underling alrogithms exposed and viewable. The code is written in the Julia, a programming language with a syntax similar to Matlab.
 
-The neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. The results are state of the art for a neural network that does not contain a priori knowledge about the geometric invariances of the data like a Convolutional Neural Network does.
+The neural network is trained on the MNIST dataset of hand written digits. On the test dataset, the neural network correctly classifies XX % of the hand written digits. The results are state of the art for a neural network that does not contain a priori knowledge about the geometric invariances of the dataset like a Convolutional Neural Network does.
 
 ## Download
 
@@ -23,7 +23,7 @@ Training the neural network can take several days. Set the working directory to 
 
 `julia train.jl > train.out`
 
-The neural network will save its parameters to a folder called `bin/` once training is complete. To classify all hand written digits in the test set, run the following command.
+The neural network will save its parameters to a folder called `bin/` once training is complete. To classify the hand written digits in the test set, run the following command.
 
 `julia test.jl > test.out`
 
@@ -33,15 +33,13 @@ The percentage of correct answers will be written at the end of the text file `t
 
 ###### Training
 
-Feed-forward neural networks are commonly trained using Backpropagation to minimize the error between the actual output and the desired output. The Backpropgation algorithm is an efficient method for computing the gradient of the error. The error from the output is passed backward through the weights of the neural network, multipling the errors by the derivative of that layer. The operation amounts to applying the Chain rule from calculus to compute the gradients. The error-loss is minimized by moving the weights of the neural network down the gradient.
+Feed-forward neural networks are commonly trained using Backpropagation to minimize the error between the desired and actual output. The Backpropgation algorithm is an efficient method for computing the gradient of the error. The error from the output is passed backward through the weights of the neural network, multipling the errors by the derivative of that layer. Each pass of the errors through a previous layer amounts to carrying out the Chain rule from calculus to compute the derivative. The error-loss is minimized by moving the weights of the neural network down the gradient. Changes are made to the weights in small, discrete steps determined by the value put in the *learning rate*.
 
-The cross-entropy error function is used here. It is an ideal choice for an objective function because it is equivalent to optimizing the Likelihood function. To follow the true gradient of the Likelihood function would require using the entire dataset at each iteration to update the weights. In practice only a subset of the training examples called a minibatch are used at each iteration, with unused training examples set aside to use in later minibatches.
+Minimizing the cross-entropy error is equivalent to maximizing the Likelihood function, allowing us to train neural networks using Maximum Likelihood methods. To follow the true gradient of the Likelihood function would require using the entire dataset to update the weights each iteration. In practice, only a minibatch is used at each iteration with unused examples set aside to use in future minibatches. That said, theoretical evidence exists indicating that the use of minibatches will not distort the objective function if the learning rate is decreased at each iteration following a specific schedule. The schedule used here is an approximation---the learning rate is decreased following a linear progression.
 
-Several hyperparameters effect the performance of the neural network. The learning rate determines the size of the parameter updates. The complete Likelihood function an be preserved as the objective function if the learning rate is adjusted following a schedule that satisfies:
+% A momentum term is included to help the training procedure escape inflection points and local minima. The idea is that adding momentum will help the parameter overcome
 
-Intuitively, the first constraint ensures that the parameters can reach any point no matter where they are initialized while the second constraint ensures convergence to the specific mode instead of bouncing around it. The conditions require an infinite number of updates. Because the neural network is run only for a finite number of updates, the first condition, which cannot be satisfied, is ignored. To satisty the second condition the learning rate is decayed linearly over the duration of the training procedure.
-
-A momentum term is included to help the training procedure escape local traps. The idea is that the a momentum term will keep the training procedure moving over inflection points. Normally a series of simulations would be run to find the optimal hyperparameters. This would require splitting the training data into a training set and a validation set. However, the results reported here are from only one training run. Therefore, no validation set is required.
+% A momentum term is included to help the training procedure escape local traps. The idea is that the a momentum term will keep the training procedure moving over inflection points. Normally a series of simulations would be run to find the optimal hyperparameters. This would require splitting the training data into a training set and a validation set. However, the results reported here are from only one training run. Therefore, no validation set is required.
 
 ###### Architecture
 
