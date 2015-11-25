@@ -59,7 +59,8 @@ The architecture of the neural network is detailed in the Table below.
 
 ###### Regularization
 
-* Dropout
+The neural network contains nearly a million parameters making in prone to overfitting. Dropout is a powerful method for regularization. At each iteration, neurons are removed from the neural network with a probability of 50%. The thinned out neural network is then trained using Backpropagation. During the next iteration, all the neurons are restored and the dropout procedure is repeated to thin out different parts of the neural network. The neural network effectively learns how to classify with approximately half of the neurons missing. Once training is complete, the weights are scaled back by 50% so that all the neurons can be used at the same time. The dropout procedure is equivalent to averaging together an exponential number of models together as one using the geometric mean.
+
 * Why no validation set?
 
 ###### References
