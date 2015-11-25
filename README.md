@@ -61,3 +61,5 @@ The architecture of the neural network is detailed in the Table below.
 
 * Dropout
 * Why no validation set?
+
+###### References
