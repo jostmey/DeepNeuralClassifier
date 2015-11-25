@@ -153,17 +153,15 @@
 
 			# Add the gradient to the minibatch.
 			#
-			scale = alpha/N_minibatch
-
-			db1 += scale*e1
-			dW12 += (scale*y1)*e2'
-			db2 += scale*e2
-			dW23 += (scale*y2)*e3'
-			db3 += scale*e3
-			dW34 += (scale*y3)*e4'
-			db4 += scale*e4
-			dW45 += (scale*y4)*e5'
-			db5 += scale*e5
+			db1 += e1/N_minibatch
+			dW12 += y1*(e2'/N_minibatch)
+			db2 += e2/N_minibatch
+			dW23 += y2*(e3'/N_minibatch)
+			db3 += e3/N_minibatch
+			dW34 += y3*(e4'/N_minibatch)
+			db4 += e4/N_minibatch
+			dW45 += y4*(e5'/N_minibatch)
+			db5 += e5/N_minibatch
 
 			# Update percentage of guesses that are correct.
 			#
@@ -176,17 +174,17 @@
 
 		end
 
-		# Update parameters.
+		# Multiply the derivative by the learning rate to update the parameters following the gradient.
 		#
-		b1 += db1
-		W12 += dW12
-		b2 += db2
-		W23 += dW23
-		b3 += db3
-		W34 += dW34
-		b4 += db4
-		W45 += dW45
-		b5 += db5
+		b1 += alpha*db1
+		W12 += alpha*dW12
+		b2 += alpha*db2
+		W23 += alpha*dW23
+		b3 += alpha*db3
+		W34 += alpha*dW34
+		b4 += alpha*db4
+		W45 += alpha*dW45
+		b5 += alpha*db5
 
 		# Reset the parameter changes from the minibatch (scale by momentum factor).
 		#
