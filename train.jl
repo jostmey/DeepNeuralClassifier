@@ -126,7 +126,7 @@
 		#
 		for j = 1:N_minibatch
 
-			# Randomly load item from the dataset (SGD).
+			# Randomly load item from the dataset (par of stochastic gradient descent).
 			#
 			k = rand(1:N_datapoints)
 
@@ -198,7 +198,7 @@
 		dW45 *= momentum
 		db5 *= momentum
 
-		# Decrease the learning rate (part of SGD).
+		# Decrease the learning rate (part of stochastic gradient descent).
 		#
 		alpha *= (N_updates-i)/(N_updates-i+1)
 
