@@ -126,7 +126,7 @@
 		#
 		for j = 1:N_minibatch
 
-			# Load the next item from the dataset.
+			# Randomly load item from the dataset (SGD).
 			#
 			k = rand(1:N_datapoints)
 
@@ -198,7 +198,7 @@
 		dW45 *= momentum
 		db5 *= momentum
 
-		# Linearly decrease the learning rate.
+		# Decrease the learning rate (part of SGD).
 		#
 		alpha *= (N_updates-i)/(N_updates-i+1)
 
