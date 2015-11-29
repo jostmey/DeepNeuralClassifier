@@ -61,7 +61,7 @@
 
 	# Initial learning rate.
 	#
-	alpha = 0.1
+	alpha = 0.001*(N_minibatch/N_datapoints)
 
 	# Dropout probability for removing neurons.
 	#
@@ -143,7 +143,7 @@
 			y4 = softplus(W34'*y3+b4).*r4
 			y5 = softmax(W45'*y4+b5)
 
-			# Backpropagation for computing the gradients of the cross-entropy error function.
+			# Backpropagation for computing the gradients of the Likelihood function.
 			#
 			e5 = z-y5
 			e4 = (W45*e5).*dsoftplus(y4).*r4
@@ -153,15 +153,15 @@
 
 			# Add the gradient to the minibatch.
 			#
-			db1 += e1/N_minibatch
-			dW12 += y1*(e2'/N_minibatch)
-			db2 += e2/N_minibatch
-			dW23 += y2*(e3'/N_minibatch)
-			db3 += e3/N_minibatch
-			dW34 += y3*(e4'/N_minibatch)
-			db4 += e4/N_minibatch
-			dW45 += y4*(e5'/N_minibatch)
-			db5 += e5/N_minibatch
+			db1 += e1
+			dW12 += y1*e2'
+			db2 += e2
+			dW23 += y2*e3'
+			db3 += e3
+			dW34 += y3*e4'
+			db4 += e4
+			dW45 += y4*e5'
+			db5 += e5
 
 			# Update percentage of guesses that are correct.
 			#
@@ -174,17 +174,17 @@
 
 		end
 
-		# Multiply the derivative by the learning rate to update the parameters following the gradient.
+		# Update parameters using stochastic gradient descent.
 		#
-		b1 += alpha*db1
-		W12 += alpha*dW12
-		b2 += alpha*db2
-		W23 += alpha*dW23
-		b3 += alpha*db3
-		W34 += alpha*dW34
-		b4 += alpha*db4
-		W45 += alpha*dW45
-		b5 += alpha*db5
+		b1 += (alpha*N_datapoints/N_minibatch)*db1
+		W12 += (alpha*N_datapoints/N_minibatch)*dW12
+		b2 += (alpha*N_datapoints/N_minibatch)*db2
+		W23 += (alpha*N_datapoints/N_minibatch)*dW23
+		b3 += (alpha*N_datapoints/N_minibatch)*db3
+		W34 += (alpha*N_datapoints/N_minibatch)*dW34
+		b4 += (alpha*N_datapoints/N_minibatch)*db4
+		W45 += (alpha*N_datapoints/N_minibatch)*dW45
+		b5 += (alpha*N_datapoints/N_minibatch)*db5
 
 		# Reset the parameter changes from the minibatch (scale by momentum factor).
 		#
