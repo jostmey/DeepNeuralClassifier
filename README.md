@@ -47,13 +47,13 @@ Because the output contains more than just two answers, a simple binary neuron w
 
 The architecture of the neural network is detailed in the Table below.
 
-| Layer | Neuron Type | Purpose                  | Number   |
-| :----:|:-----------:|:-------------------------|:--------:|
-| 1     | Sigmoid     | Normalize Features       | 28^2     |
-| 2     | Softplus    | Nonlinear Transformation | 500      |
-| 3     | Softplus    | Nonlinear Transformation | 500      |
-| 4     | Softplus    | Nonlinear Transformation | 500      |
-| 5     | Softmax     | Decision Layer           | 1 (x 10) |
+| Layer | Neuron Type | Purpose                  | Number    |
+| :----:|:-----------:|:-------------------------|:---------:|
+| 1     | Sigmoid     | Normalize Features       | 28^2      |
+| 2     | Softplus    | Nonlinear Transformation | 500       |
+| 3     | Softplus    | Nonlinear Transformation | 500       |
+| 4     | Softplus    | Nonlinear Transformation | 500       |
+| 5     | Softmax     | Decision Layer           | 1 ( x 10) |
 
 ###### Regularization
 
