@@ -61,7 +61,7 @@
 
 	# Initial learning rate.
 	#
-	alpha = 0.001*(N_minibatch/N_datapoints)
+	alpha = 0.001
 
 	# Dropout probability for removing neurons.
 	#
@@ -126,7 +126,7 @@
 		#
 		for j = 1:N_minibatch
 
-			# Randomly load item from the dataset (par of stochastic gradient descent).
+			# Randomly load item from the dataset (part of stochastic gradient descent).
 			#
 			k = rand(1:N_datapoints)
 
@@ -176,15 +176,15 @@
 
 		# Update parameters using stochastic gradient descent.
 		#
-		b1 += (alpha*N_datapoints/N_minibatch)*db1
-		W12 += (alpha*N_datapoints/N_minibatch)*dW12
-		b2 += (alpha*N_datapoints/N_minibatch)*db2
-		W23 += (alpha*N_datapoints/N_minibatch)*dW23
-		b3 += (alpha*N_datapoints/N_minibatch)*db3
-		W34 += (alpha*N_datapoints/N_minibatch)*dW34
-		b4 += (alpha*N_datapoints/N_minibatch)*db4
-		W45 += (alpha*N_datapoints/N_minibatch)*dW45
-		b5 += (alpha*N_datapoints/N_minibatch)*db5
+		b1 += alpha*db1
+		W12 += alpha*dW12
+		b2 += alpha*db2
+		W23 += alpha*dW23
+		b3 += alpha*db3
+		W34 += alpha*dW34
+		b4 += alpha*db4
+		W45 += alpha*dW45
+		b5 += alpha*db5
 
 		# Reset the parameter changes from the minibatch (scale by momentum factor).
 		#
