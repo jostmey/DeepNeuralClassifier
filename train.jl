@@ -151,7 +151,7 @@
 			e2 = (W23*e3).*dsoftplus(y2).*r2
 			e1 = (W12*e2).*dsoftmax(y1)
 
-			# Add the gradient to the minibatch.
+			# Add the errors to the minibatch.
 			#
 			db1 += e1
 			dW12 += y1*e2'
