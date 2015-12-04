@@ -210,8 +210,8 @@
 			#
 			println("REPORT")
 			println("  Batch = $(round(Int, i))")
-			println("  alpha = $(round(alpha, 5))")
-			println("  Correct = $(round(100.0*N_correct/N_tries, 5))%")
+			println("  alpha = $(round(alpha, 8))")
+			println("  Correct = $(round(100.0*N_correct/N_tries, 8))%")
 			println("")
 			flush(STDOUT)
 
