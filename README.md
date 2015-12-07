@@ -17,7 +17,7 @@ The code requires the Julia runtime environment. Instructions on how to download
 
 You must first add the MNIST dataset to Julia. Launch `julia` and run `Pkg.add("MNIST")` at the prompt.
 
-Training the neural network can take several days. Set the working directory to this folder and run the following in the command line terminal.
+Training the neural network can take several days or even weeks. Set the working directory to this folder and run the following in the command line terminal.
 
 `julia train.jl > train.out`
 
@@ -26,6 +26,10 @@ The neural network will save its parameters to a folder called `bin/` once train
 `julia test.jl > test.out`
 
 The percentage of correct answers will be written at the end of the text file `test.out`.
+
+## PERFORMANCE
+
+This package is not written for speed. It is meant to serve as a working example of an artificial neural network. As such, there is no GPU acceleration. Training using only the CPU can take days or even weeks. The training time can be shortened by reducing the number of updates, but this could lead to poorer performance on the test data. Consider using an exising machine learning package when searching for a deployable solution.
 
 ## THEORY
 
