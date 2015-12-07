@@ -37,7 +37,7 @@
 	# Schedule for updating the neural network.
 	#
 	N_minibatch = 100
-	N_updates = round(Int, N_datapoints/N_minibatch)*100
+	N_updates = round(Int, N_datapoints/N_minibatch)*500
 
 	# Number of neurons in each layer.
 	#
