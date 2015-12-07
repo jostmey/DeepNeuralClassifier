@@ -1,6 +1,6 @@
 ## Description
 
-Example scripts for a deep, feed-forward neural network have been written from scratch. No machine learning packages are used. The code is written in the Julia, a programming language with a syntax similar to Matlab.
+Example scripts for a deep, feed-forward neural network have been written from scratch. No machine learning packages are used, providing an example of how to implement the underlying algorithms of an artificial neural network. The code is written in the Julia, a programming language with a syntax similar to Matlab.
 
 The neural network is trained on the MNIST dataset of handwritten digits. On the test dataset, the neural network correctly classifies 98.42 % of the handwritten digits. The results are pretty good for a neural network that does not contain a priori knowledge about the geometric invariances of the dataset like a Convolutional Neural Network would.
 
