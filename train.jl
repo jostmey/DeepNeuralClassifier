@@ -75,10 +75,6 @@
 # Methods
 ##########################################################################################
 
-	# Generate mask for neuron dropout.
-	#
-	remove(n) = 1.0*(dropout .<= rand(n))
-
 	# Activation functions.
 	#
 	sigmoid(x) = 1.0./(1.0+exp(-x))
@@ -90,6 +86,10 @@
 	dsigmoid(y) = y.*(1.0-y)
 	dsoftplus(y) = 1.0-exp(-y)
 	dsoftmax(y) = y.*(1.0-y)
+
+	# Generate mask for neuron dropout.
+	#
+	remove(n) = 1.0*(dropout .<= rand(n))
 
 ##########################################################################################
 # Train
