@@ -13,9 +13,9 @@ The neural network is trained on the MNIST dataset of handwritten digits. On the
 
 The code requires the Julia runtime environment. Instructions on how to download and install Julia are [here](http://julialang.org/). The scripts have been developed using version 0.4 and do not work on previous versions of Julia.
 
-## RUN
+THe MNIST dataset must be added to the Julia environment. To add the dataset, launch `julia` and run `Pkg.add("MNIST")` at the prompt.
 
-You must first add the MNIST dataset to Julia. Launch `julia` and run `Pkg.add("MNIST")` at the prompt.
+## RUN
 
 Training the neural network can take several days or even weeks. Set the working directory to this folder and run the following in the command line terminal.
 
