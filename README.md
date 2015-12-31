@@ -21,7 +21,7 @@ Training the neural network can take several days or even weeks. Set the working
 
 `julia train.jl > train.out`
 
-The neural network will save its parameters to a folder called `bin/` once training is complete. To classify the handwritten digits in the test set, run the following command.
+The neural network will save its parameters to a folder called `bin` once training is complete. To classify the handwritten digits in the test set, run the following command.
 
 `julia test.jl > test.out`
 
