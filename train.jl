@@ -143,7 +143,7 @@
 			y4 = softplus(W34'*y3+b4).*r4
 			y5 = softmax(W45'*y4+b5)
 
-			# Backpropagation for computing the gradients of the Likelihood function.
+			# Backpropagation for computing the gradients of the log-Likelihood function.
 			#
 			e5 = z-y5
 			e4 = (W45*e5).*dsoftplus(y4).*r4
