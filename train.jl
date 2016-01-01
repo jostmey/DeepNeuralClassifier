@@ -224,7 +224,7 @@
 
 	end
 
-	# Scale effected weights by probability of undergoing dropout.
+	# Scale back the weights assuming that none of the neurons will dropout.
 	#
 	W23 *= 1.0-dropout
 	W34 *= 1.0-dropout
