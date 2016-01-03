@@ -132,7 +132,7 @@
 
 			x = 6.0*features[k,:]'-3.0
 
-			z = zeros(N_z)
+			z = zeros(N5)
 			z[round(Int, labels[k])+1] = 1.0
 
 			# Feedforward pass for computing the output.
