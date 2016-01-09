@@ -132,7 +132,7 @@
 
 			x = 6.0*features[k,:]'-3.0
 
-			z = zeros(10)
+			z = zeros(N5)
 			z[round(Int, labels[k])+1] = 1.0
 
 			# Feedforward pass for computing the output.
@@ -224,7 +224,7 @@
 
 	end
 
-	# Scale effected weights by probability of undergoing dropout.
+	# Scale back the weights assuming that none of the neurons will dropout.
 	#
 	W23 *= 1.0-dropout
 	W34 *= 1.0-dropout
