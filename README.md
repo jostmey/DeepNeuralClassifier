@@ -21,7 +21,7 @@ The MNIST dataset must be installed in the Julia environment. To add the dataset
 
 Training the neural network can take several days or even weeks. Set the working directory to this folder and run the following in the command line terminal.
 
-`julia train.jl > train.out`
+`julia train.jl`
 
 The neural network will save its parameters to a folder called `bin` once training is complete. To classify the handwritten digits in the test set, run the following command.
 
