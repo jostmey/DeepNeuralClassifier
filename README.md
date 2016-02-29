@@ -8,7 +8,7 @@ The neural network is trained on the MNIST dataset of handwritten digits. On the
 
 ## Download
 
-* Download: [zip](https://github.com/jostmey/DeepNeuralClassifieer/zipball/master)
+* Download: [zip](https://github.com/jostmey/DeepNeuralClassifier/zipball/master)
 * Git: `git clone https://github.com/jostmey/DeepNeuralClassifier`
 
 ## Requirements
