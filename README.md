@@ -1,3 +1,5 @@
+# Deep Neural Network Classifier Example
+
 ## Description
 
 Example scripts for a deep, feed-forward neural network have been written from scratch. No machine learning packages are used, providing an example of how to implement the underlying algorithms of an artificial neural network. The code is written in the Julia, a programming language with a syntax similar to Matlab.
