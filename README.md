@@ -6,7 +6,7 @@ Example scripts for a deep, feed-forward neural network have been written from s
 
 ![alt text](img/architecture.png "Architecture of neural network.")
 
-The neural network is trained on the MNIST dataset of handwritten digits. On the test dataset, the neural network correctly classifies 98.42 % of the handwritten digits. The results are pretty good for a fully connected neural network that does not contain a priori knowledge about the geometric invariances of the dataset like a Convolutional Neural Network would.
+The neural network is trained on the MNIST dataset of handwritten digits. On the test dataset, the neural network correctly classifies 98.42 % of the handwritten digits. The results are pretty good for a fully connected neural network that does not contain a priori knowledge the numbers represent pixels of an image.
 
 ## Download
 
